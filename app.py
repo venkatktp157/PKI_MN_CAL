@@ -13,6 +13,7 @@ import re
 import couchdb
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from scipy.interpolate import griddata, RegularGridInterpolator, interp1d
 from dotenv import load_dotenv
 
@@ -1384,6 +1385,15 @@ def health_check():
         "version": "3.0.0",
         "timestamp": datetime.now().isoformat()
     }
+
+@app.get("/")
+def root():
+    """Root endpoint for basic info"""
+    return JSONResponse(content={
+        "message": "Welcome to the PKI MN Calculator API",
+        "endpoints": ["/health", "/calculate", "/docs"],
+        "version": "3.0.0"
+    })    
 
 # ========== IF NEEDED: Main Entrypoint ==========
 if __name__ == "__main__":
