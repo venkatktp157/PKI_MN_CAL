@@ -81,6 +81,7 @@ LNG_TK  = ["LNGAS_TK"]
 SHIP_DB_MAP = {
     "CMA CGM MONACO": "monaco",      # custom mapping for legacy reasons
     "GREENWAY": "greenway",
+    "CMA CGM PRIDE": "pride",
     # Add more mappings...
 }
 def get_db_name_for_ship(ship_id):
