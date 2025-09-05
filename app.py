@@ -1375,6 +1375,19 @@ def calculate_and_cache(ship_id: str = Body(..., embed=True),
     )
     output_df['Date'] = output_df['Date'].dt.strftime('%Y-%m-%d')
 
+    selected_fields = ["Date", "ship_id", "ROB_cal", "ROB_cams", "Discrepancy", "PKI", "MN",
+                       "Min_MN", "Molar_Mass", "Density", "tank1_liquid_vol","tank1_vap_vol", 
+                       "tank1_total_vol","tank2_liquid_vol","tank2_vap_vol", "tank2_total_vol", 
+                       "total_volume"]  # example fields
+
+    # Ensure all selected fields exist in the DataFrame
+    missing_fields = [col for col in selected_fields if col not in output_df.columns]
+    if missing_fields:
+        raise HTTPException(status_code=500, detail=f"Missing columns in output: {missing_fields}")
+
+    # Filter to selected fields
+    output_df = output_df[selected_fields]
+
     return output_df.to_dict(orient="records")
 
 @app.get("/health")
