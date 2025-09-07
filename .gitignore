@@ -15,6 +15,7 @@ Thumbs.db
 .env
 
 #old application file which gives full josn output of 200+ columns
+app1.py
 app2.py
 
 

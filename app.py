@@ -1379,6 +1379,14 @@ def calculate_and_cache(ship_id: str = Body(..., embed=True),
                        "Min_MN", "Molar_Mass", "Density", "tank1_liquid_vol","tank1_vap_vol", 
                        "tank1_total_vol","tank2_liquid_vol","tank2_vap_vol", "tank2_total_vol", 
                        "total_volume"]  # example fields
+    
+    # Define columns to round
+    round_columns = [
+        "PKI", "Molar_Mass",
+        "tank1_liquid_vol", "tank1_vap_vol", "tank1_total_vol",
+        "tank2_liquid_vol", "tank2_vap_vol", "tank2_total_vol",
+        "total_volume"
+    ]
 
     # Ensure all selected fields exist in the DataFrame
     missing_fields = [col for col in selected_fields if col not in output_df.columns]
@@ -1387,6 +1395,11 @@ def calculate_and_cache(ship_id: str = Body(..., embed=True),
 
     # Filter to selected fields
     output_df = output_df[selected_fields]
+
+    # Round specified columns to 2 decimal places
+    for col in round_columns:
+        if col in output_df.columns:
+            output_df[col] = output_df[col].round(2)
 
     return output_df.to_dict(orient="records")
 
