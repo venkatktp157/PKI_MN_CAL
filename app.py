@@ -37,7 +37,8 @@ available_ships = {
     "MOUNT GOWER": ["LNG_TK1", "LNG_TK2"],
     "MOUNT GAEA": ["LNG_TK1", "LNG_TK2"],
     "MOUNT COOK": ["LNG_TK1", "LNG_TK2"],
-    "MOUNT ARARAT": ["LNG_TK1", "LNG_TK2"],    
+    "MOUNT ARARAT": ["LNG_TK1", "LNG_TK2"],  
+    "ATLANTIC PEARL": ["LNG_TK1", "LNG_TK2"],   
     "CMA CGM ARCTIC" : ["LNG_TK"],
     "CMA CGM BALI" : ["LNG_TK"],
     "CMA CGM DIGNITY" : ["LNG_TK"],
@@ -483,6 +484,11 @@ def calculate_columnwise(df, ship_id, tank_ids):
         LNG_TK1_cap = 2324.113
         LNG_TK2_cap = 2322.097
         identity = "110k_tanker"
+    elif ship_id in ["ATLANTIC PEARL"]:   #111K_tanker
+            BOG_max = 1200    # to be ascertained
+            LNG_TK1_cap = 1816.435
+            LNG_TK2_cap = 1818.006
+            identity = "111k_tanker"
     elif ship_id in ["STARWAY", "GREENWAY"]:   #150K_tanker
         BOG_max = 1200
         LNG_TK1_cap = 2570.133
